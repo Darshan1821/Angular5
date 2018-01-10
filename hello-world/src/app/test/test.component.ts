@@ -11,31 +11,36 @@ import { Component, OnInit } from '@angular/core';
             <h4>{{uname.toUpperCase()}}</h4>
             <h4>{{uname.length}}</h4>
             <h4>{{greet()}}</h4>
-
-            <br><br>
+            <hr>
             <!--Property Binding-->
             <h3>Property Binding:</h3>
             <input [id]="myId" text="Darshan" value="Darshan"/>
-            
-            <br><br>
+            <hr>
             <!--Single Class Binding-->
             <h3>Single Class Binding:</h3>
             <h4 class="text-success">Welcome Dexter</h4>
             <h4 [class]="successClass">Welcome Dexter</h4>
             <h4 [class.text-danger]="hasError">Welcome Dexter</h4>
-            
-            <br><br>
+            <hr>
             <!--Multiple Class Binding-->
             <h3>Multiple Class Binding:</h3>
             <h4 [ngClass]="msgObject">Welcome Dexter</h4>
-            
-            <br><br>
+            <hr>
             <!--Style Binding-->
             <h3>Style Binding:</h3>
             <h4 [style.color]="'orange'">Welcome Dexter</h4>
             <h4 [style.color]="myColor">Welcome Dexter</h4>
             <h4 [style.color]="hasError ? 'red' : 'green'">Welcome Dexter</h4>
-            <h4 [ngStyle]="myStyles">Welcome Dexter</h4>`,
+            <h4 [ngStyle]="myStyles">Welcome Dexter</h4>
+            <hr>
+            <!--Event Binding-->
+            <h3>Event Binding:</h3>
+            <button (click)="onClick()">Greet</button>
+            {{greeting}}<br><br>
+            <button (click)="getEvent($event)">Get Event Type</button>
+            {{eventType}}<br><br>
+            <button (click)="direct='Direct Message'">Greet</button>
+            {{direct}}`,
   styles: [`
       .text-success{color:green;}
       .text-danger{color:red;}
@@ -45,7 +50,10 @@ import { Component, OnInit } from '@angular/core';
 export class TestComponent implements OnInit {
 
   public uname="Darshan";
+  public greeting="";
+  public eventType="";
   public myId="username";
+  public direct="";
   public successClass="text-success";
   public hasError=false;
   public isSpecial=true;
@@ -67,5 +75,13 @@ export class TestComponent implements OnInit {
 
   greet(){
     return "Hello "+this.uname;
+  }
+
+  onClick(){
+    this.greeting="WelcOme To mY WoRld";
+  }
+
+  getEvent(event){
+    this.eventType = event.type;
   }
 }
