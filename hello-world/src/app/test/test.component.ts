@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-test',
@@ -73,7 +73,12 @@ import { Component, OnInit } from '@angular/core';
             <h3>Index First Last Odd Even Color</h3>
             <div *ngFor="let color of colors; index as i; first as f; last as l;odd as o; even as e">
             <h4>{{i}} {{f}} {{l}} {{o}} {{e}} {{color}}</h4>
-            </div>`,
+            </div>
+            <hr>
+            <!--Component Interaction-->
+            <h3>Component Interaction:</h3>
+            <h4>{{"Data from parent to child: Hello "+parentData}}</h4>
+            <button (click)="fireEvent()">Send Data to Parent Component</button>`,
   styles: [`
       .text-success{color:green;}
       .text-danger{color:red;}
@@ -82,38 +87,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestComponent implements OnInit {
 
+  //Interpolation
   public uname="Darshan";
-  public greeting="";
-  public eventType="";
+
+  greet(){
+    return "Hello "+this.uname;
+  }
+  
+  //Property Binding
   public myId="username";
-  public direct="";
-  public successClass="text-success";
+  
+  //Single Class Binding
   public hasError=false;
+  public successClass="text-success";
+
+  //Multiple Class Binding
   public isSpecial=true;
-  public myColor="blue";
   public msgObject = {
       "text-success": !this.hasError,
       "text-danger": this.hasError,
       "text-special": this.isSpecial
   }
+
+  //Style Binding
+  public myColor="blue";
+  
   public myStyles = {
     color:"purple",
     fontStyle:"italic"
   }
-  public personName="";
-  public ngIfValue=false;
-  public color="red";
-  public colors=["red","blue","green","yellow",];
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  greet(){
-    return "Hello "+this.uname;
-  }
-
+  //Event Binding
+  public greeting="";
+  public eventType="";
+  public direct="";
+  
   onClick(){
     this.greeting="WelcOme To mY WoRld";
   }
@@ -122,7 +130,33 @@ export class TestComponent implements OnInit {
     this.eventType = event.type;
   }
 
+  //Template Reference Variables
   getValue(myInput){
     console.log(myInput.value);
   }
+
+  //Two Way Binding
+  public personName="";
+
+  //ngIf
+  public ngIfValue=false;
+  
+  //ngSwitch
+  public color="red";
+  
+  //ngFor
+  public colors=["red","blue","green","yellow",];
+
+  //data from app-component
+  @Input() public parentData;
+  
+  //data to app-component
+  @Output() public childEvent = new EventEmitter();
+
+  fireEvent(){
+    this.childEvent.emit('Hello Java!!');
+  }
+
+  constructor() {}
+  ngOnInit() {}
 }
