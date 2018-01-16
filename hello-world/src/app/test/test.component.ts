@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-test',
-  template: `
-            <!--Interpolation-->
+  template: `<!--Interpolation-->
             <h3>Interpolation:</h3>
             <h4>Wecome {{uname}}</h4>
             <h4>{{2+3}}</h4>
@@ -41,14 +40,24 @@ import { Component, OnInit } from '@angular/core';
             {{eventType}}<br><br>
             <button (click)="direct='Direct Message'">Greet</button>
             {{direct}}
+            <hr>
             <!--Template Reference Variables-->
             <h3>Template Reference Variables:</h3>
             <input #myInput type="text">
             <button (click)="getValue(myInput)">Get</button>
+            <hr>
             <!--Two Way Binding-->
             <h3>Two Way Binding:</h3>
             <input [(ngModel)]="personName" type="text">
-            {{personName}}`,
+            {{personName}}
+            <hr>
+            <!--ngIf-->
+            <h3>ngIf:</h3>
+            <h4 *ngIf="ngIfValue; else elseBlock"> ngIf </h4>
+            <ng-template #elseBlock><h4>Else Block</h4></ng-template>
+            <div *ngIf="ngIfValue; then thenBlock; else elseBlock1"></div>
+            <ng-template #thenBlock><h4>Then Block</h4></ng-template>
+            <ng-template #elseBlock1><h4>Else Block1</h4></ng-template>`,
   styles: [`
       .text-success{color:green;}
       .text-danger{color:red;}
@@ -76,6 +85,7 @@ export class TestComponent implements OnInit {
     fontStyle:"italic"
   }
   public personName="";
+  public ngIfValue=false;
 
   constructor() { }
 
