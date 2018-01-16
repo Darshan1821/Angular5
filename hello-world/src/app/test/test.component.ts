@@ -40,7 +40,11 @@ import { Component, OnInit } from '@angular/core';
             <button (click)="getEvent($event)">Get Event Type</button>
             {{eventType}}<br><br>
             <button (click)="direct='Direct Message'">Greet</button>
-            {{direct}}`,
+            {{direct}}
+            <!--Template Reference Variables-->
+            <h3>Template Reference Variables:</h3>
+            <input #myInput type="text">
+            <button (click)="getValue(myInput)">Get</button>`,
   styles: [`
       .text-success{color:green;}
       .text-danger{color:red;}
@@ -83,5 +87,9 @@ export class TestComponent implements OnInit {
 
   getEvent(event){
     this.eventType = event.type;
+  }
+
+  getValue(myInput){
+    console.log(myInput.value);
   }
 }
