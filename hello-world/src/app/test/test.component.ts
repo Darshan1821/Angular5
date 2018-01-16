@@ -78,7 +78,32 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
             <!--Component Interaction-->
             <h3>Component Interaction:</h3>
             <h4>{{"Data from parent to child: Hello "+parentData}}</h4>
-            <button (click)="fireEvent()">Send Data to Parent Component</button>`,
+            <button (click)="fireEvent()">Send Data to Parent Component</button>
+            <hr>
+            <!--Pipes-->
+            <h3>Pipes:</h3>
+            <h4>{{pipeMessage | lowercase}}</h4>
+            <h4>{{pipeMessage | uppercase}}</h4>
+            <h4>{{pipeMessage | titlecase}}</h4>
+            <h4>{{pipeMessage | slice:2:7}}</h4>
+            <h4>{{person | json}}</h4>
+            <h4>{{num | number:'1.2-3'}}</h4>
+            <h4>{{num | number:'3.4-5'}}</h4>
+            <h4>{{num | number:'3.1-2'}}</h4>
+            <h4>{{0.25| percent}}</h4>
+            <h4>{{0.25| currency}}</h4>
+            <h4>{{0.25| currency:'GBP'}}</h4>
+            <h4>{{0.25| currency:'INR'}}</h4>
+            <h4>{{date}}</h4>
+            <h4>{{date | date:'short'}}</h4>
+            <h4>{{date | date:'shortDate'}}</h4>
+            <h4>{{date | date:'shortTime'}}</h4>
+            <h4>{{date | date:'medium'}}</h4>
+            <h4>{{date | date:'mediumDate'}}</h4>
+            <h4>{{date | date:'mediumTime'}}</h4>
+            <h4>{{date | date:'long'}}</h4>
+            <h4>{{date | date:'longDate'}}</h4>
+            <h4>{{date | date:'longTime'}}</h4>`,
   styles: [`
       .text-success{color:green;}
       .text-danger{color:red;}
@@ -156,6 +181,17 @@ export class TestComponent implements OnInit {
   fireEvent(){
     this.childEvent.emit('Hello Java!!');
   }
+
+  //pipes
+  public pipeMessage="Welcome my friends!!";
+  public person = {
+      "firstName":"Darshan",
+      "lastName":"Bangoria",
+      "Id":"14CE007",
+      "Organization":"Promact"
+  }
+  public num=5.678;
+  public date=new Date();
 
   constructor() {}
   ngOnInit() {}
