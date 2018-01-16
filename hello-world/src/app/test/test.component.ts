@@ -66,6 +66,13 @@ import { Component, OnInit } from '@angular/core';
             <div *ngSwitchCase="'green'">You picked green color</div>
             <div *ngSwitchCase="'blue'">You picked blue color</div>
             <div *ngSwitchDefault>You picked default color</div>
+            </div>
+            <hr>
+            <!--ngFor-->
+            <h3>ngFor:</h3>
+            <h3>Index First Last Odd Even Color</h3>
+            <div *ngFor="let color of colors; index as i; first as f; last as l;odd as o; even as e">
+            <h4>{{i}} {{f}} {{l}} {{o}} {{e}} {{color}}</h4>
             </div>`,
   styles: [`
       .text-success{color:green;}
@@ -96,6 +103,7 @@ export class TestComponent implements OnInit {
   public personName="";
   public ngIfValue=false;
   public color="red";
+  public colors=["red","blue","green","yellow",];
 
   constructor() { }
 
