@@ -44,7 +44,11 @@ import { Component, OnInit } from '@angular/core';
             <!--Template Reference Variables-->
             <h3>Template Reference Variables:</h3>
             <input #myInput type="text">
-            <button (click)="getValue(myInput)">Get</button>`,
+            <button (click)="getValue(myInput)">Get</button>
+            <!--Two Way Binding-->
+            <h3>Two Way Binding:</h3>
+            <input [(ngModel)]="personName" type="text">
+            {{personName}}`,
   styles: [`
       .text-success{color:green;}
       .text-danger{color:red;}
@@ -71,6 +75,7 @@ export class TestComponent implements OnInit {
     color:"purple",
     fontStyle:"italic"
   }
+  public personName="";
 
   constructor() { }
 
