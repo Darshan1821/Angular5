@@ -57,7 +57,16 @@ import { Component, OnInit } from '@angular/core';
             <ng-template #elseBlock><h4>Else Block</h4></ng-template>
             <div *ngIf="ngIfValue; then thenBlock; else elseBlock1"></div>
             <ng-template #thenBlock><h4>Then Block</h4></ng-template>
-            <ng-template #elseBlock1><h4>Else Block1</h4></ng-template>`,
+            <ng-template #elseBlock1><h4>Else Block1</h4></ng-template>
+            <hr>
+            <!--ngSwitch-->
+            <h3>ngSwitch:</h3>
+            <div [ngSwitch]="color">
+            <div *ngSwitchCase="'red'">You picked red color</div>
+            <div *ngSwitchCase="'green'">You picked green color</div>
+            <div *ngSwitchCase="'blue'">You picked blue color</div>
+            <div *ngSwitchDefault>You picked default color</div>
+            </div>`,
   styles: [`
       .text-success{color:green;}
       .text-danger{color:red;}
@@ -86,6 +95,7 @@ export class TestComponent implements OnInit {
   }
   public personName="";
   public ngIfValue=false;
+  public color="red";
 
   constructor() { }
 
